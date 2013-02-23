@@ -1,7 +1,7 @@
-name: DVassPlugin
+name: DemiGods
 main: me.blha303.DVassPlugin
 version: 1
-authors: [blha303]
+authors: [blha303, D_Vass]
 commands:
     path:
         description: Change path

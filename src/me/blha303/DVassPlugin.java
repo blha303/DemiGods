@@ -3,6 +3,7 @@ package me.blha303;
 import org.anjocaido.groupmanager.GroupManager;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
 import org.anjocaido.groupmanager.permissions.AnjoPermissionsHandler;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -24,6 +25,11 @@ public class DVassPlugin extends JavaPlugin implements Listener {
 		if (GMplugin != null && GMplugin.isEnabled())
 		{ groupManager = (GroupManager)GMplugin; }
 		
+		getConfig().options().copyDefaults(true);
+		getConfig().addDefault("restrictNumberOfChanges", true);
+		getConfig().addDefault("numberOfChanges", 7);
+		getConfig().addDefault("errorOnChangeLimitExceeded", "You've exceeded the path change limit.");
+		
 		this.getServer().getPluginManager().registerEvents(this, this);
 	}
 
@@ -36,13 +42,21 @@ public class DVassPlugin extends JavaPlugin implements Listener {
 		}
 		
 		if (player != null) {
+			if (getConfig().getInt(player.getName() + ".changes") > 7) {
+				player.sendMessage(ChatColor.translateAlternateColorCodes
+						('&', getConfig().getString("errorOnChangeLimitExceeded")));
+				return true;
+			}
 			if (args.length == 1) {
 				setGroup(player, args[0]);
 				return true;
+			} else {
+				return false;
 			}
+		} else {
+			sender.sendMessage("Only players can use this");
+			return false;
 		}
-		
-		return false;
 	}
 	
 	//GroupManager methods
