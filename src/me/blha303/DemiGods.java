@@ -76,15 +76,16 @@ public class DemiGods extends JavaPlugin implements Listener {
 					}
 					player.sendMessage(ChatColor.translateAlternateColorCodes('&', list)); 
 					return true; 
-				}
-				if (!setGroup(player, args[0])) {
-					player.sendMessage(getConfig().getString("invalidPath"));
-					return true;
 				} else {
-					getConfig().set(player.getName() + ".changes", getConfig().getInt(player.getName() + ".changes") + 1);
-					saveConfig();
-					player.sendMessage(getConfig().getString("pathChangeSuccessful").replaceAll("%groupname%", getGroup(player)));
-					return true;
+					if (!setGroup(player, args[0])) {
+						player.sendMessage(getConfig().getString("invalidPath"));
+						return true;
+					} else {
+						getConfig().set(player.getName() + ".changes", getConfig().getInt(player.getName() + ".changes") + 1);
+						saveConfig();
+						player.sendMessage(getConfig().getString("pathChangeSuccessful").replaceAll("%groupname%", getGroup(player)));
+						return true;
+					} 
 				}
 			} else {
 				return false;
