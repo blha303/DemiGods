@@ -10,6 +10,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -127,6 +128,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 	//End GroupManager methods
 	
 	//MCMMO methods
+	@EventHandler
 	public void onPlayerGetXP(final McMMOPlayerXpGainEvent event) {
 		Player player = event.getPlayer();
 		SkillType skill = event.getSkill();
