@@ -65,7 +65,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 				return true;
 			}
 			if (args.length == 1) {
-				if (args[0] == "list") {
+				if (args[0]equalsIgnoreCase("list")) {
 					String list = "";
 					for (String name : (List<String>)getConfig().getList("listOfGroups")) {
 						if (list == "") {
@@ -77,7 +77,9 @@ public class DemiGods extends JavaPlugin implements Listener {
 					player.sendMessage(ChatColor.translateAlternateColorCodes('&', list)); 
 					return true; 
 				} else {
-					if (!setGroup(player, args[0])) {
+					String groupCheck = getGroup(player);
+					if (groupCheck != null) {
+						setGroup(player, args[0])
 						player.sendMessage(getConfig().getString("invalidPath"));
 						return true;
 					} else {
