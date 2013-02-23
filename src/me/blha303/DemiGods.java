@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
 import com.gmail.nossr50.skills.utilities.SkillType;
 
-public class DVassPlugin extends JavaPlugin implements Listener {
+public class DemiGods extends JavaPlugin implements Listener {
 	private GroupManager groupManager;
 	
 	public void onEnable() {
@@ -25,10 +25,11 @@ public class DVassPlugin extends JavaPlugin implements Listener {
 		if (GMplugin != null && GMplugin.isEnabled())
 		{ groupManager = (GroupManager)GMplugin; }
 		
-		getConfig().options().copyDefaults(true);
 		getConfig().addDefault("restrictNumberOfChanges", true);
 		getConfig().addDefault("numberOfChanges", 7);
 		getConfig().addDefault("errorOnChangeLimitExceeded", "You've exceeded the path change limit.");
+		getConfig().options().copyDefaults(true);
+		saveConfig();
 		
 		this.getServer().getPluginManager().registerEvents(this, this);
 	}
