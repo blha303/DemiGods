@@ -74,7 +74,7 @@ public class DVassPlugin extends JavaPlugin implements Listener {
 		SkillType skill = event.getSkill();
 		int xp = event.getXpGained();
 		String group = getGroup(player);
-		if (group.equalsIgnoreCase("Zeus")) {
+		if (group.equalsIgnoreCase("zeus")) {
 			int newxp = xp + (5/100 * xp);
 			event.setXpGained(newxp);
 			return;
@@ -82,6 +82,51 @@ public class DVassPlugin extends JavaPlugin implements Listener {
 			switch (skill) {
 			case UNARMED: case SWORDS: case ARCHERY: case AXES:
 				int newxp = xp + (9/100 * xp);
+				event.setXpGained(newxp);
+				break;
+			default:
+				return;
+			}	
+		} else if (group.equalsIgnoreCase("artemis")) {
+			switch (skill) {
+			case TAMING: case FISHING:
+				int newxp = xp + (15/100 * xp);
+				event.setXpGained(newxp);
+				break;
+			default:
+				return;
+			}	
+		} else if (group.equalsIgnoreCase("athena")) {
+			switch (skill) {
+			case ACROBATICS: case REPAIR:
+				int newxp = xp + (15/100 * xp);
+				event.setXpGained(newxp);
+				break;
+			default:
+				return;
+			}	
+		} else if (group.equalsIgnoreCase("apollo")) {
+			switch (skill) {
+			case WOODCUTTING: case HERBALISM:
+				int newxp = xp + (15/100 * xp);
+				event.setXpGained(newxp);
+				break;
+			default:
+				return;
+			}	
+		} else if (group.equalsIgnoreCase("hades")) {
+			switch (skill) {
+			case MINING:
+				int newxp = xp + (17/100 * xp);
+				event.setXpGained(newxp);
+				break;
+			default:
+				return;
+			}	
+		} else if (group.equalsIgnoreCase("aphrodite")) {
+			switch (skill) {
+			case EXCAVATION:
+				int newxp = xp + (17/100 * xp);
 				event.setXpGained(newxp);
 				break;
 			default:
