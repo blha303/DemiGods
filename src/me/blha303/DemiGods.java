@@ -44,6 +44,14 @@ public class DemiGods extends JavaPlugin implements Listener {
 		getConfig().addDefault("errorOnChangeLimitExceeded", "You've exceeded the path change limit.");
 		getConfig().addDefault("pathChangeSuccessful", "Your path has been changed to honour %groupname%!");
 		getConfig().addDefault("invalidPath", "Invalid path name! Use /path to see the list.");
+                getConfig().addDefault("zeusBoost", 0.05f);
+                getConfig().addDefault("aresBoost", 0.09f);
+                getConfig().addDefault("hadesBoost", 0.17f);
+                getConfig().addDefault("aphroditeBoost", 0.17f);
+                getConfig().addDefault("artemisBoost", 0.15f);
+                getConfig().addDefault("apolloBoost", 0.15f);
+                getConfig().addDefault("athenaBoost", 0.15f);
+                getConfig().addDefault("poseidonBoost", 0.20f);
 		getConfig().addDefault("separator", "&f, &c");
 		getConfig().options().copyDefaults(true);
 		saveConfig();
@@ -133,18 +141,15 @@ public class DemiGods extends JavaPlugin implements Listener {
 		Player player = event.getPlayer();
 		SkillType skill = event.getSkill();
 		int xp = event.getXpGained();
-		getLogger().info("XP supposed to gain: " + xp);
 		String group = getGroup(player);
 		if (group.equalsIgnoreCase("zeus")) {
 			float newxp = xp + (0.05f * xp);
-			getLogger().info("XP wanted to gain: " + newxp);
 			event.setXpGained(Math.round(newxp));
 			return;
 		} else if (group.equalsIgnoreCase("ares")) {
 			switch (skill) {
 			case UNARMED: case SWORDS: case ARCHERY: case AXES:
 				float newxp = xp + (0.09f * xp);
-				getLogger().info("XP wanted to gain: " + newxp);
 				event.setXpGained(Math.round(newxp));
 				break;
 			default:
@@ -154,7 +159,6 @@ public class DemiGods extends JavaPlugin implements Listener {
 			switch (skill) {
 			case TAMING: case FISHING:
 				float newxp = xp + (0.15f * xp);
-				getLogger().info("XP wanted to gain: " + newxp);
 				event.setXpGained(Math.round(newxp));
 				break;
 			default:
@@ -164,7 +168,6 @@ public class DemiGods extends JavaPlugin implements Listener {
 			switch (skill) {
 			case ACROBATICS: case REPAIR:
 				float newxp = xp + (0.15f * xp);
-				getLogger().info("XP wanted to gain: " + newxp);
 				event.setXpGained(Math.round(newxp));
 				break;
 			default:
@@ -174,7 +177,6 @@ public class DemiGods extends JavaPlugin implements Listener {
 			switch (skill) {
 			case WOODCUTTING: case HERBALISM:
 				float newxp = xp + (0.15f * xp);
-				getLogger().info("XP wanted to gain: " + newxp);
 				event.setXpGained(Math.round(newxp));
 				break;
 			default:
@@ -184,7 +186,6 @@ public class DemiGods extends JavaPlugin implements Listener {
 			switch (skill) {
 			case MINING:
 				float newxp = xp + (0.17f * xp);
-				getLogger().info("XP wanted to gain: " + newxp);
 				event.setXpGained(Math.round(newxp));
 				break;
 			default:
@@ -194,7 +195,6 @@ public class DemiGods extends JavaPlugin implements Listener {
 			switch (skill) {
 			case EXCAVATION:
 				float newxp = xp + (0.17f * xp);
-				getLogger().info("XP wanted to gain: " + newxp);
 				event.setXpGained(Math.round(newxp));
 				break;
 			default:
@@ -204,7 +204,6 @@ public class DemiGods extends JavaPlugin implements Listener {
 			switch (skill) {
 			case EXCAVATION:
 				float newxp = xp + (0.20f * xp);
-				getLogger().info("XP wanted to gain: " + newxp);
 				event.setXpGained(Math.round(newxp));
 				break;
 			default:
