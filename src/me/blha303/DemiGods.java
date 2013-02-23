@@ -35,6 +35,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 		grouplist.add("apollo");
 		grouplist.add("hades");
 		grouplist.add("aphrodite");
+		grouplist.add("poseidon");
 		
 		getConfig().addDefault("restrictNumberOfChanges", true);
 		getConfig().addDefault("listOfGroups", grouplist);
@@ -180,6 +181,15 @@ public class DemiGods extends JavaPlugin implements Listener {
 			switch (skill) {
 			case EXCAVATION:
 				float newxp = xp + (0.17f * xp);
+				event.setXpGained(Math.round(newxp));
+				break;
+			default:
+				return;
+			}	
+		} else if (group.equalsIgnoreCase("poseidon")) {
+			switch (skill) {
+			case EXCAVATION:
+				float newxp = xp + (0.20f * xp);
 				event.setXpGained(Math.round(newxp));
 				break;
 			default:
