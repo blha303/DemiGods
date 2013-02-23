@@ -209,7 +209,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 				return;
 			}	
 		} else {
-			player.sendmessage("Please choose a god to honour. Use /path");
+			player.sendMessage("Please choose a god to honour. Use /path");
 		}
 	}
 }
