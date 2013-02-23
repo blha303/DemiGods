@@ -1,0 +1,8 @@
+name: DVassPlugin
+main: me.blha303.DVassPlugin
+version: 1
+authors: [blha303]
+commands:
+    path:
+        description: Change path
+        usage: /path <pathname>
