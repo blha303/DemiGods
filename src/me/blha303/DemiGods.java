@@ -1,5 +1,8 @@
 package me.blha303;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.anjocaido.groupmanager.GroupManager;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
 import org.anjocaido.groupmanager.permissions.AnjoPermissionsHandler;
@@ -24,8 +27,17 @@ public class DemiGods extends JavaPlugin implements Listener {
  
 		if (GMplugin != null && GMplugin.isEnabled())
 		{ groupManager = (GroupManager)GMplugin; }
+		List<String> grouplist = new ArrayList<String>();
+		grouplist.add("zeus");
+		grouplist.add("ares");
+		grouplist.add("artemis");
+		grouplist.add("athena");
+		grouplist.add("apollo");
+		grouplist.add("hades");
+		grouplist.add("aphrodite");
 		
 		getConfig().addDefault("restrictNumberOfChanges", true);
+		getConfig().addDefault("listOfGroups", grouplist);
 		getConfig().addDefault("numberOfChanges", 7);
 		getConfig().addDefault("errorOnChangeLimitExceeded", "You've exceeded the path change limit.");
 		getConfig().options().copyDefaults(true);
@@ -49,8 +61,15 @@ public class DemiGods extends JavaPlugin implements Listener {
 				return true;
 			}
 			if (args.length == 1) {
-				setGroup(player, args[0]);
-				return true;
+				if (!setGroup(player, args[0])) {
+					player.sendMessage("Invalid path!");
+					return true;
+				} else {
+					getConfig().set(player.getName() + ".changes", getConfig().getInt(player.getName() + ".changes") + 1);
+					saveConfig();
+					player.sendMessage("Path change successful!");
+					return true;
+				}
 			} else {
 				return false;
 			}
@@ -90,14 +109,14 @@ public class DemiGods extends JavaPlugin implements Listener {
 		int xp = event.getXpGained();
 		String group = getGroup(player);
 		if (group.equalsIgnoreCase("zeus")) {
-			int newxp = xp + (5/100 * xp);
-			event.setXpGained(newxp);
+			float newxp = xp + (0.05f * xp);
+			event.setXpGained(Math.round(newxp));
 			return;
 		} else if (group.equalsIgnoreCase("ares")) {
 			switch (skill) {
 			case UNARMED: case SWORDS: case ARCHERY: case AXES:
-				int newxp = xp + (9/100 * xp);
-				event.setXpGained(newxp);
+				float newxp = xp + (0.09f * xp);
+				event.setXpGained(Math.round(newxp));
 				break;
 			default:
 				return;
@@ -105,8 +124,8 @@ public class DemiGods extends JavaPlugin implements Listener {
 		} else if (group.equalsIgnoreCase("artemis")) {
 			switch (skill) {
 			case TAMING: case FISHING:
-				int newxp = xp + (15/100 * xp);
-				event.setXpGained(newxp);
+				float newxp = xp + (0.15f * xp);
+				event.setXpGained(Math.round(newxp));
 				break;
 			default:
 				return;
@@ -114,8 +133,8 @@ public class DemiGods extends JavaPlugin implements Listener {
 		} else if (group.equalsIgnoreCase("athena")) {
 			switch (skill) {
 			case ACROBATICS: case REPAIR:
-				int newxp = xp + (15/100 * xp);
-				event.setXpGained(newxp);
+				float newxp = xp + (0.15f * xp);
+				event.setXpGained(Math.round(newxp));
 				break;
 			default:
 				return;
@@ -123,8 +142,8 @@ public class DemiGods extends JavaPlugin implements Listener {
 		} else if (group.equalsIgnoreCase("apollo")) {
 			switch (skill) {
 			case WOODCUTTING: case HERBALISM:
-				int newxp = xp + (15/100 * xp);
-				event.setXpGained(newxp);
+				float newxp = xp + (0.15f * xp);
+				event.setXpGained(Math.round(newxp));
 				break;
 			default:
 				return;
@@ -132,8 +151,8 @@ public class DemiGods extends JavaPlugin implements Listener {
 		} else if (group.equalsIgnoreCase("hades")) {
 			switch (skill) {
 			case MINING:
-				int newxp = xp + (17/100 * xp);
-				event.setXpGained(newxp);
+				float newxp = xp + (0.17f * xp);
+				event.setXpGained(Math.round(newxp));
 				break;
 			default:
 				return;
@@ -141,8 +160,8 @@ public class DemiGods extends JavaPlugin implements Listener {
 		} else if (group.equalsIgnoreCase("aphrodite")) {
 			switch (skill) {
 			case EXCAVATION:
-				int newxp = xp + (17/100 * xp);
-				event.setXpGained(newxp);
+				float newxp = xp + (0.17f * xp);
+				event.setXpGained(Math.round(newxp));
 				break;
 			default:
 				return;
