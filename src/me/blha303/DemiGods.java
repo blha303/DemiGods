@@ -40,12 +40,16 @@ public class DemiGods extends JavaPlugin implements Listener {
 		getConfig().addDefault("listOfGroups", grouplist);
 		getConfig().addDefault("numberOfChanges", 7);
 		getConfig().addDefault("errorOnChangeLimitExceeded", "You've exceeded the path change limit.");
+		getConfig().addDefault("pathChangeSuccessful", "Your path has been changed to honour %groupname%!");
+		getConfig().addDefault("invalidPath", "Invalid path name! Use /path to see the list.");
+		getConfig().addDefault("separator", "&f, &c");
 		getConfig().options().copyDefaults(true);
 		saveConfig();
 		
 		this.getServer().getPluginManager().registerEvents(this, this);
 	}
 
+	@SuppressWarnings("unchecked")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player;
 		if (sender instanceof Player) {
@@ -61,13 +65,25 @@ public class DemiGods extends JavaPlugin implements Listener {
 				return true;
 			}
 			if (args.length == 1) {
+				if (args[0] == "list") {
+					String list = "";
+					for (String name : (List<String>)getConfig().getList("listOfGroups")) {
+						if (list == "") {
+							list = name;
+						} else {
+							list = list + getConfig().getString("separator") + name;
+						}
+					}
+					player.sendMessage(ChatColor.translateAlternateColorCodes('&', list)); 
+					return true; 
+				}
 				if (!setGroup(player, args[0])) {
-					player.sendMessage("Invalid path!");
+					player.sendMessage(getConfig().getString("invalidPath"));
 					return true;
 				} else {
 					getConfig().set(player.getName() + ".changes", getConfig().getInt(player.getName() + ".changes") + 1);
 					saveConfig();
-					player.sendMessage("Path change successful!");
+					player.sendMessage(getConfig().getString("pathChangeSuccessful").replaceAll("%groupname%", getGroup(player)));
 					return true;
 				}
 			} else {
