@@ -60,6 +60,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 		getConfig().addDefault("apolloBoost", "0.15");
 		getConfig().addDefault("athenaBoost", "0.15");
 		getConfig().addDefault("poseidonBoost", "0.20");
+		getConfig().addDefault("hadesChance", "0.50");
 		getConfig().addDefault("separator", "&f, &c");
 		getConfig().options().copyDefaults(true);
 		saveConfig();
@@ -158,7 +159,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 			Random r = new Random();
   			float chance = r.nextFloat();  			
 
- 			if (chance <= 0.20f) {
+ 			if (chance <= Float.parseFloat(getConfig().getString("hadesChance")) {
    				event.setCancelled(true);
    				player.sendMessage(getConfig().getString(
 								"hadesMercy"));
