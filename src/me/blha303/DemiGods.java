@@ -2,6 +2,7 @@ package me.blha303;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.anjocaido.groupmanager.GroupManager;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
@@ -18,6 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
 import com.gmail.nossr50.skills.utilities.SkillType;
+import com.massivecraft.factions.event.PowerLossEvent;
 
 public class DemiGods extends JavaPlugin implements Listener {
 	private GroupManager groupManager;
