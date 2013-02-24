@@ -159,7 +159,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 			Random r = new Random();
   			float chance = r.nextFloat();  			
 
- 			if (chance <= Float.parseFloat(getConfig().getString("hadesChance")) {
+ 			if (chance <= Float.parseFloat(getConfig().getString("hadesChance"))) {
    				event.setCancelled(true);
    				player.sendMessage(getConfig().getString(
 								"hadesMercy"));
