@@ -48,6 +48,8 @@ public class DemiGods extends JavaPlugin implements Listener {
 				"Your path has been changed to honour %groupname%!");
 		getConfig().addDefault("invalidPath",
 				"Invalid path name! Use /path to see the list.");
+		getConfig().addDefault("hadesMercy",
+				"Hades pitied you! You did not lose any power.");
 		getConfig().addDefault("zeusBoost", "0.05");
 		getConfig().addDefault("aresBoost", "0.09");
 		getConfig().addDefault("hadesBoost", "0.17");
@@ -146,6 +148,21 @@ public class DemiGods extends JavaPlugin implements Listener {
 
 	// End GroupManager methods
 
+	@EventHandler
+	public void onPowerLoss(final PowerLossEvent event) {
+		Player player = event.getPlayer();
+		String group = getGroup(player);
+		if (group.equalsIgnoreCase("hades")) {
+			Random r = new Random();
+  			float chance = r.nextFloat();  			
+
+ 			if (chance <= 0.20f) {
+   				event.setCancelled(true);
+   				player.sendMessage(getConfig().getString(
+								"hadesMercy"));
+   			}
+		}
+	}
 	// MCMMO methods
 	@EventHandler
 	public void onPlayerGetXP(final McMMOPlayerXpGainEvent event) {
