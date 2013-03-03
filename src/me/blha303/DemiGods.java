@@ -101,6 +101,25 @@ public class DemiGods extends JavaPlugin implements Listener {
 				return false;
 			}
 		} else if (player != null) {
+			if (args.length == 2 && player.hasPermission("paths.admin")) {
+				Player newPlayer = Bukkit.getServer().getPlayer(args[1])
+				if (!setGroup(newPlayer, args[0])) {
+					sender.sendMessage(getConfig().getString("invalidPath"));
+					return true;
+				} else {
+					getConfig().set(
+							newPlayer.getName() + ".changes",
+							getConfig().getInt(newPlayer.getName() + ".changes") + 1);
+					saveConfig();
+					sender.sendMessage(getConfig().getString(
+							"pathChangeSuccessful").replaceAll(
+							"%groupname%", getGroup(newPlayer)));
+					newPlayer.sendMessage(getConfig().getString(
+							"pathChangeSuccessful").replaceAll(
+							"%groupname%", getGroup(newPlayer)));
+					return true;
+				}	
+			}
 			if (getConfig().getInt(player.getName() + ".changes") > 7) {
 				player.sendMessage(ChatColor.translateAlternateColorCodes('&',
 						getConfig().getString("errorOnChangeLimitExceeded")));
