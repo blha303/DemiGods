@@ -80,6 +80,10 @@ public class DemiGods extends JavaPlugin implements Listener {
 		if (player == null) {
 			if (args.length == 2) {
 				Player newPlayer = getServer().getPlayer(args[1]);
+				if (newPlayer == null) {
+					sender.sendMessage("player is not online!");
+					return false;
+				}
 				if (!setGroup(newPlayer, args[0])) {
 					sender.sendMessage(getConfig().getString("invalidPath"));
 					return true;
@@ -103,6 +107,10 @@ public class DemiGods extends JavaPlugin implements Listener {
 		} else {
 			if (args.length == 2 && player.hasPermission("paths.admin")) {
 				Player newPlayer = getServer().getPlayer(args[1]);
+				if (newPlayer == null) {
+					sender.sendMessage("player is not online!");
+					return false;
+				}
 				if (!setGroup(newPlayer, args[0])) {
 					sender.sendMessage(getConfig().getString("invalidPath"));
 					return true;
