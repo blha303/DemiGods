@@ -79,7 +79,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 		}
 		if (player == null) {
 			if (args.length == 2) {
-				Player newPlayer = Bukkit.getServer().getPlayer(args[1])
+				Player newPlayer = getServer().getPlayer(args[1]);
 				if (!setGroup(newPlayer, args[0])) {
 					sender.sendMessage(getConfig().getString("invalidPath"));
 					return true;
@@ -100,9 +100,9 @@ public class DemiGods extends JavaPlugin implements Listener {
 				sender.sendMessage("You need two arguments /path [group] [playername]");
 				return false;
 			}
-		} else if (player != null) {
+		} else {
 			if (args.length == 2 && player.hasPermission("paths.admin")) {
-				Player newPlayer = Bukkit.getServer().getPlayer(args[1])
+				Player newPlayer = getServer().getPlayer(args[1]);
 				if (!setGroup(newPlayer, args[0])) {
 					sender.sendMessage(getConfig().getString("invalidPath"));
 					return true;
@@ -159,9 +159,6 @@ public class DemiGods extends JavaPlugin implements Listener {
 			} else {
 				return false;
 			}
-		} else {
-			sender.sendMessage("Only players can use this");
-			return false;
 		}
 	}
 
