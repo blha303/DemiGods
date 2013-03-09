@@ -145,11 +145,11 @@ public class DemiGods extends JavaPlugin implements Listener {
 							'&', list));
 					return true;
 				} else {
-						if (getConfig().getInt(player.getName() + ".changes") > 7) {
-				player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-						getConfig().getString("errorOnChangeLimitExceeded")));
-				return true;
-			}
+					if (getConfig().getInt(player.getName() + ".changes") > 7) {
+						player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+								getConfig().getString("errorOnChangeLimitExceeded")));
+						return true;
+					}
 
 					if (!setGroup(player, args[0])) {
 						player.sendMessage(getConfig().getString("invalidPath"));
