@@ -17,8 +17,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.gmail.nossr50.datatypes.skills.SkillType;
 import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
-import com.gmail.nossr50.skills.utilities.SkillType;
 import com.massivecraft.factions.event.PowerLossEvent;
 
 public class DemiGods extends JavaPlugin implements Listener {
