@@ -1,5 +1,6 @@
 package me.blha303;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -83,7 +84,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 		} else {
 			player = null;
 		}
-		string groupName = args[1];
+		String groupName = args[1];
 		if (!groupName.equalsIgnoreCase("zeus") || !groupName.equalsIgnoreCase("ares") || !groupName.equalsIgnoreCase("artemis")
 		|| !groupName.equalsIgnoreCase("athena") || !groupName.equalsIgnoreCase("apollo") || !groupName.equalsIgnoreCase("hades")
 		|| !groupName.equalsIgnoreCase("aphrodite") || !groupName.equalsIgnoreCase("poseidon")) {
