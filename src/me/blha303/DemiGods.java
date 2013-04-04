@@ -31,6 +31,10 @@ public class DemiGods extends JavaPlugin implements Listener {
 		if (GMplugin != null && GMplugin.isEnabled()) {
 			groupManager = (GroupManager) GMplugin;
 		}
+		File config = new File(this.getDataFolder(), "config.yml");
+ 
+		if (!config.exists()) {
+   
 		List<String> grouplist = new ArrayList<String>();
 		grouplist.add("zeus");
 		grouplist.add("ares");
@@ -64,6 +68,8 @@ public class DemiGods extends JavaPlugin implements Listener {
 		getConfig().addDefault("separator", "&f, &c");
 		getConfig().options().copyDefaults(true);
 		saveConfig();
+		
+		}
 
 		this.getServer().getPluginManager().registerEvents(this, this);
 	}
@@ -76,6 +82,12 @@ public class DemiGods extends JavaPlugin implements Listener {
 			player = (Player) sender;
 		} else {
 			player = null;
+		}
+		string groupName = args[1];
+		if (!groupName.equalsIgnoreCase("zeus") || !groupName.equalsIgnoreCase("ares") || !groupName.equalsIgnoreCase("artemis")
+		|| !groupName.equalsIgnoreCase("athena") || !groupName.equalsIgnoreCase("apollo") || !groupName.equalsIgnoreCase("hades")
+		|| !groupName.equalsIgnoreCase("aphrodite") || !groupName.equalsIgnoreCase("poseidon")) {
+			sender.sendMessage(getConfig().getString("invalidPath"));
 		}
 		if (player == null) {
 			if (args.length == 2) {
