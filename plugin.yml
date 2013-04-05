@@ -1,6 +1,6 @@
 name: DemiGods
 main: me.blha303.DemiGods
-version: 1
+version: 2
 authors: [blha303, D_Vass]
 commands:
     path:
