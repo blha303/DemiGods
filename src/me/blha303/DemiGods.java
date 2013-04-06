@@ -158,6 +158,7 @@ public class DemiGods extends JavaPlugin implements Listener {
 		|| !groupName.equalsIgnoreCase("athena") || !groupName.equalsIgnoreCase("apollo") || !groupName.equalsIgnoreCase("hades")
 		|| !groupName.equalsIgnoreCase("aphrodite") || !groupName.equalsIgnoreCase("poseidon")) {
 			sender.sendMessage(getConfig().getString("invalidPath"));
+			return false;
 		}
 					if (getConfig().getInt(player.getName() + ".changes") > 7) {
 						player.sendMessage(ChatColor.translateAlternateColorCodes('&',
