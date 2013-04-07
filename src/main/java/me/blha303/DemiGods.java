@@ -154,12 +154,10 @@ public class DemiGods extends JavaPlugin implements Listener {
 					return true;
 				} else {
 					String groupName = args[0];
-		if (!groupName.equalsIgnoreCase("zeus") || !groupName.equalsIgnoreCase("ares") || !groupName.equalsIgnoreCase("artemis")
-		|| !groupName.equalsIgnoreCase("athena") || !groupName.equalsIgnoreCase("apollo") || !groupName.equalsIgnoreCase("hades")
-		|| !groupName.equalsIgnoreCase("aphrodite") || !groupName.equalsIgnoreCase("poseidon")) {
-			sender.sendMessage(getConfig().getString("invalidPath"));
-			return false;
-		}
+		if (groupName.equalsIgnoreCase("zeus") || groupName.equalsIgnoreCase("ares") || groupName.equalsIgnoreCase("artemis")
+		|| groupName.equalsIgnoreCase("athena") || groupName.equalsIgnoreCase("apollo") || groupName.equalsIgnoreCase("hades")
+		|| groupName.equalsIgnoreCase("aphrodite") || groupName.equalsIgnoreCase("poseidon")) {
+		
 					if (getConfig().getInt(player.getName() + ".changes") > 7) {
 						player.sendMessage(ChatColor.translateAlternateColorCodes('&',
 								getConfig().getString("errorOnChangeLimitExceeded")));
@@ -179,6 +177,11 @@ public class DemiGods extends JavaPlugin implements Listener {
 								"%groupname%", getGroup(player)));
 						return true;
 					}
+				} else {
+						sender.sendMessage(getConfig().getString("invalidPath"));
+			return false;
+		}	
+				
 				}
 			} else {
 				return false;
